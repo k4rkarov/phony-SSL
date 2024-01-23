@@ -1,6 +1,6 @@
 # phony-SSL
 
-The Python script will serve an HTTPS server using a randomly generated 'certificate.pem' and 'key.pem' on localhost. This allows for the creation of a fake, yet seemingly legitimate, login page. This script serves as a Proof of Concept (POC), particularly useful for registering evidence by demonstrating the ability to forge a webpage, such as for phishing attacks.
+The Python script will serve an HTTPS server using a randomly generated `certificatename.pem` and `privatekeyname.pem` on localhost. This allows for the creation of a fake, yet seemingly legitimate, login page. This script serves as a Proof of Concept (POC), particularly useful for registering evidence by demonstrating the ability to forge an HTTPS webpage, such as for phishing attacks.
 
 #### Usage
 
@@ -15,7 +15,7 @@ The script will bring up a webpage that can be modified according to the specifi
 
 <br>
 
-# Creating your own .key and .crt files
+# 1. Creating your own .key and .crt files
 
 You can generate a self-signed SSL certificate using the `openssl` tool, which is available in most Linux distributions and also on Windows. Here are the steps to generate a self-signed SSL certificate:
 
@@ -41,7 +41,7 @@ You can generate a self-signed SSL certificate using the `openssl` tool, which i
 
 <br>
 
-# Converting the .key and .crt files to .pem
+# 2. Converting the .key and .crt files to .pem
 
 To convert the private key (.key) and the self-signed certificate (.crt) into separate .pem files, you can do so using OpenSSL:
 
@@ -58,5 +58,17 @@ openssl x509 -in certificatename.crt -out certificatename.pem
 ```
 
 <br>
+<br>
 
-You can use these files on your web server to set up a secure connection using HTTPS. Keep in mind that, as this is a self-signed certificate, browsers will display a security warning when accessing your site since it was not issued by a trusted certificate authority. It is suitable for use only in a development or testing environment. For a production environment, it is recommended to obtain a certificate from a trusted certificate authority.
+# 3. Modifying the https-server.py file
+
+If you have renamed the .pem files, ensure to update their names accordingly on line 7 within the `https-server.py` file:
+
+```python
+context.load_cert_chain(certfile='certificatename.pem', keyfile='privatekeyname.pem')
+```
+
+<br>
+
+> [!NOTE]  
+> You can use these files on your web server to set up a secure connection using HTTPS. Keep in mind that, as this is a self-signed certificate, browsers will display a security warning when accessing your site since it was not issued by a trusted certificate authority. It is suitable for use only in a development or testing environment. For a production environment, it is recommended to obtain a certificate from a trusted certificate authority.
