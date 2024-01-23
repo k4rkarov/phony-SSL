@@ -15,6 +15,11 @@ The script will bring up a webpage that can be modified according to the specifi
 
 <br>
 
+> [!NOTE]  
+> You can use these files on your web server to set up a secure connection using HTTPS. Keep in mind that, as this is a self-signed certificate, browsers will display a security warning when accessing your site since it was not issued by a trusted certificate authority. It is suitable for use only in a development, testing or POC environment. For a production environment, it is recommended to obtain a certificate from a trusted certificate authority.
+
+<br>
+
 # 1. Creating your own .key and .crt files
 
 You can generate a self-signed SSL certificate using the `openssl` tool, which is available in most Linux distributions and also on Windows. Here are the steps to generate a self-signed SSL certificate:
@@ -67,8 +72,3 @@ If you have renamed the .pem files, ensure to update their names accordingly on 
 ```python
 context.load_cert_chain(certfile='certificatename.pem', keyfile='privatekeyname.pem')
 ```
-
-<br>
-
-> [!NOTE]  
-> You can use these files on your web server to set up a secure connection using HTTPS. Keep in mind that, as this is a self-signed certificate, browsers will display a security warning when accessing your site since it was not issued by a trusted certificate authority. It is suitable for use only in a development or testing environment. For a production environment, it is recommended to obtain a certificate from a trusted certificate authority.
