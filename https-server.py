@@ -4,7 +4,7 @@ import ssl
 server_address = ('0.0.0.0', 443)
 
 context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
-context.load_cert_chain(certfile='certificate_name.pem', keyfile='key_name.pem')
+context.load_cert_chain(certfile='certificatename.pem', keyfile='privatekeyname.pem')
 
 httpd = HTTPServer(server_address, SimpleHTTPRequestHandler)
 httpd.socket = context.wrap_socket(httpd.socket, server_side=True)
