@@ -11,7 +11,7 @@ sudo python3 https-server.py
 The script will bring up a webpage that can be modified according to the specific use case:
 <br>
 <br>
-<p align="center"><img src="https://raw.githubusercontent.com/k4rkarov/phony-SSL/main/poc.png"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/k4rkarov/phony-SSL/refs/heads/main/poc.png"></p>
 
 <br>
 
